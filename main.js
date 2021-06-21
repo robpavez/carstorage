@@ -16,7 +16,7 @@ function closeEditModal() {
     
 }
 
-function createCar(e) {
+function createCar(e) {//seleciona los tag con sus respecivos valores ingresados del archivo html
     
     let name = document.getElementById('name').value
     let model = document.getElementById('model').value
@@ -24,7 +24,7 @@ function createCar(e) {
     let color = document.getElementById('color').value
     let brand = document.getElementById('brand').value
 
-    const car = {
+    const car = {//objeto listo
         name,
         model,
         doors,
@@ -32,9 +32,9 @@ function createCar(e) {
         brand,
     }
 
-    if (localStorage.getItem('cars')===null){
-        let cars = [];
-        cars.push(car);
+    if (localStorage.getItem('cars')===null){//si el auto es nulo
+        let cars = [];//entonces dejar el array vacio
+        cars.push(car);//si no es asi meter en el arregla cars vacio los datos del arreglo car de arriba
         localStorage.setItem('cars',JSON.stringify(cars));
     } else {
         let cars = JSON.parse(localStorage.getItem('cars'));
@@ -43,7 +43,7 @@ function createCar(e) {
     }
 
     readCars();
-    document.getElementById('form').reset();
+    document.getElementById('form').reset();//funcion reset,contiene el metodo preventDefault para evitar un comportamiento por defecto
     e.preventDefault();
 }
 
@@ -64,14 +64,12 @@ function readCars() {
                         <li><span>Brand:</span>${brand}</li>
                         <li><span>Model:</span>${model}</li>
                         <li><span>Doors:</span>${doors}</li>
-                        <li><span>Color:</span>${color}</li>
+                        <li><span>Color: </span>${color}</li>
                     </ul>
                 </div>
                 <div class="options">
-                    <i class="fa fa-edit" onclick="showEditModal(${i})" style="color:#6c757d;"></i>
-                    <i class="fa fa-trash-alt" onclick="deleteCar('${i}')" style="color:#dc3545;"></i>
-                    <i class="fa fa-pencil" aria-hidden="true"></i>
-
+                    <i class="fas fa-edit" onclick="showEditModal(${i})" style="color:#6c757d;"></i>
+                    <i class="fas fa-trash-alt" onclick="deleteCar('${i}')" style="color:#dc3545;"></i>
                 </div>
             </div> `;
         }
